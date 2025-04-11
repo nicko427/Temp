@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  
+     <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Home</title>
+
+    <style>
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .row{
+        margin: 0;
+      }
+
+      body{
+        display: flex;
+        height: 100vh;
+        flex-direction: column;
+      }
+
+      nav{
+        flex-grow: 1;
+        margin-bottom: 0;
+      }
+
+      main{
+        flex-grow: 28;
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+      }
+
+      .card{
+        width: 250px;
+        margin: 2px;
+      }
+
+
+    </style>
+
+  </head>
+  <body>
+
+    <nav class="nav-extended purple">
+      <div class="nav-wrapper">
+        <span style="margin-left: 10px;">
+         LE App
+        </span>
+        
+        <ul id="nav-mobile" class="right">
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </div>
+
+    </nav>
+
+    <div class="row" style="margin-top: 10px; position: absolute; height:20px; top:10; z-index:10; height:30px; width: 100vw;">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="blue lighten-5 col s10 offset-s1">
+              <div class="row"> 
+                  <div class="col s11" style="font-weight: bold;text-align: center">
+                    {{ message }}
+                  </div>
+                  <div class="col s1">
+                    <a href="" style="font-size:1.5em" >&times;</a>
+                  </div>  
+              </div>
+            </div> 
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+
+    <main class="row">
+        <!-- Left Column: Album List -->
+        <div class="col s4" >
+
+          <form class="row">
+            <div class="input-field col s9">
+              <input id="search" type="text" placeholder="Search">
+              <label for="search">Search</label>
+            </div>
+            <div class="col s3" style="padding-top: 30px">
+              <button class="btn waves-effect waves-light" type="submit" name="action">
+                <i class="material-icons">search</i>
+              </button>
+            </div>
+          </form>
+
+          <div style="height: 500px; overflow-y: scroll;">
+            <!-- Repeat this block for each album -->
+            <div class="card horizontal" style="width: 95%; margin:0;">
+              <div class="card-stacked">
+                <div class="card-content">
+                  <p>Album Title</p>
+                  <p>Artist Name</p>
+                  <br>
+                  <a class="btn-small waves-effect waves-light">View</a>
+                </div>
+              </div>
+              <div class="card-image">
+                <img height="150px" src="https://weblabs.web.app/api/brainrot/1.webp"> <!-- Online placeholder image -->
+              </div>
+            </div>
+            <!-- Repeat ends -->
+          </div>
+          
+        </div>
+        
+        <!-- Right Column: Album Details -->
+        <div class="col s8">
+          <form action="" class="row" style="margin-bottom: 10px; padding: 10px;">
+              <h5>Selected Album: Album Title - Artist Name</h5>
+              <div class="input-field">
+                <input id="title" type="text" placeholder="Title">
+                <label for="title">Title</label>
+              </div>
+              <button class="btn waves-effect waves-light right">Add Track</button>
+          </form>
+
+          <div class="row" style="height: 420px; overflow-y: scroll;">
+            <!-- List of Tracks -->
+            <ul class="collection">
+              <!-- Repeat this list item for each track -->
+              <li class="collection-item">
+                Track Title
+                <a href="#" class="secondary-content"><i class="material-icons">delete</i></a>
+              </li>
+              <!-- Repeat ends -->
+            </ul>
+          </div>
+
+
+        </div>
+    </main>
+    
+    
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script> M.AutoInit(); </script>
+  </body>
+</html>
